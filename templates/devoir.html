@@ -1,0 +1,190 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% block override_me %}
+<title>
+Devoirs
+</title>
+<link rel="icon" type="image/png" href="{% static 'image/d.JPEg' %}" sizes="109x96"/>
+{% endblock %}
+
+<style>
+:root {
+  --height: 100px;
+  --width: 200px;
+}
+
+
+.wrapper {
+  padding-top:1%;
+  margin-top:-2.5% ;
+  height: 73px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+ 
+  background: #34495e;
+
+  
+}
+.button {
+  position: relative;
+  width: calc(0.7 * var(--width));
+  height: calc(0.6 * var(--height));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+  margin: 0 0.8rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 3px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0, 0.22, 0.3, 1);
+}
+.button:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.1);
+}
+.button span {
+  color: #fff;
+  font-size: 1rem;
+  z-index: 10;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.button._1 {
+  background: #2980b9;
+}
+.button._2 {
+  background: #8e44ad;
+}
+.button._3 {
+  background: #16a085;
+}
+.button._4 {
+  background: #830aec;
+}
+.button .back {
+  position: absolute;
+  width: 0;
+  height: 0;
+  filter: url(#filter);
+  border-radius: 50%;
+  z-index: 5;
+  transition: all 2.5s cubic-bezier(0.1, 0.22, 0.3, 1);
+}
+.button._1 .back {
+  left: -50%;
+  top: -50%;
+  background: #27ae60;
+}
+.button._1:hover{
+  background: #b9af21;
+}
+.button._2 .back {
+  right: -50%;
+  top: -50%;
+  background: #c0392b;
+}
+.button._3 .back {
+  left: -50%;
+  bottom: -50%;
+  background: #34495e;
+}
+.button._4 .back {
+  right: -50%;
+  bottom: -50%;
+  background: #2980b9;
+}
+.button:hover .back {
+  width: calc(2 * var(--width));
+  height: calc(2 * var(--height));
+}
+@media only screen and (max-width: 250px) {
+  .wrapper {
+    flex-direction: column;
+ }
+  .button {
+    margin: 0.8rem 0;
+ }
+}
+
+</style>
+<svg width="0" height="0"> 
+	<filter id="filter">
+		<feTurbulence type="fractalNoise" baseFrequency=".01" numOctaves="6" />
+		<feDisplacementMap in="SourceGraphic" scale="100" />
+	</filter>
+</svg>
+
+<div class="wrapper">
+  <a href="/{{cours.slug}}">	<div class="button _1">
+    <span>Flux</span><div class="back"> </div>
+	</div></a>
+  <a  href="devoir"><div class="button _2">
+ 	<span>Devoir</span><div class="back"></div>
+	</div></a>
+	<a href="/{{cours.slug}}/exam"><div class="button _3">
+		<span>Examen</span><div class="back"></div>
+	</div>
+	</div></a>
+</div>
+</div>
+<a href="/{{cours.slug}}/annoce"><div class="button _4">
+  <span>annonce</span><div class="back"></div>
+</div>
+</div></a>
+<style>
+#doc{
+height: 140px;
+}
+.addd{
+height: 2.3em;
+
+padding-left: 84%;
+cursor: pointer;
+position:absolute;
+top:11px;
+left: 4.8em;
+}
+.addd:hover{
+  height: 2.7em;
+}
+.rend{
+
+margin-bottom: -1%;
+
+}
+</style>
+
+
+{% for d in devoir  reversed %}
+{% if d.cour.titre == cours.titre %}
+<body class='all'>
+<div class='doc' id ="doc">
+
+<h1 class="h">{{d.titre}}</h1>
+{% if d.dec %}
+
+<p class='pargraph'>{{d.dec}}</p>
+{% endif %}
+<p class='par'>{{d.dt}}</p>
+<a href="{{d.files.url}}" target="_blank"><div class='sub'>
+  <h3 class='voir'>Voir Le document</h3> 
+</div></a>
+<a href="/render/"> <img class="addd" src="{% static 'image/add2.jpg' %}"></a>
+
+
+</div>
+{% endif %}
+{% endfor %}
+<p>
+
+</p>
+
+</body>
+{% endblock%}

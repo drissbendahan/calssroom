@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>
+    
+    <form method="post" name="content">
+        {% csrf_token %}
+        {{commentf.content}}
+        {{commentf.user}}
+         {{commentf.doc}}
+<input type="submit" name="commenter">
+</form>
+</div>
+{{comment.count}}
+{% for c in comment %}
+{{c.content}}
+{{c.user}}
+{{c.dat}}
+{{c.doc.id}}
+<hr>
+{% endfor %}
+{% endblock%}

@@ -1,0 +1,36 @@
+body {margin: 0;}
+
+ul.topnav {
+  list-style-type: none;
+  margin: 0;
+  padding:0px;
+  overflow: hidden;
+  background-color: rgb(22, 28, 83);
+}
+
+ul.topnav li {float: left;
+padding-left:0% ;
+padding-right:5%;
+
+
+}
+
+ul.topnav li a {
+  display: block;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  padding: 20px 20px;
+  text-decoration: none;
+}
+
+ul.topnav li a:hover:not(.active) {background-color: rgb(177, 189, 11);}
+
+ul.topnav li a.active:hover {background-color: #cc0e0e;}
+
+
+ul.topnav li.right {float: right;}
+
+@media screen and (max-width: 300px) {
+  ul.topnav li.right, 
+  ul.topnav li {float: none;}
+}
